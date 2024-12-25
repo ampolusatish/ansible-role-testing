@@ -1,8 +1,8 @@
 ---
 galaxy_info:
+  role_name: ansible-role-testing
   author: Satish
-  description: Brief description of the role
-  company: devops Engineer 88 lakhs per annum
+  description: A role to install and configure Apache (httpd) on EL-based and Ubuntu systems.
   license: MIT
   min_ansible_version: 2.9
   platforms:
@@ -12,11 +12,11 @@ galaxy_info:
         - 9
     - name: Ubuntu
       versions:
-        - focal
-        - jammy
-  categories:
+        - 20.04
+        - 22.04
+  galaxy_tags:
+    - apache
+    - webserver
     - system
-    - web
-
 dependencies: []
- 
+
