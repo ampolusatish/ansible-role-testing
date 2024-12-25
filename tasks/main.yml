@@ -1,0 +1,33 @@
+---
+- name: Update all packages to the latest version
+  yum:
+    name: "*"
+    state: latest
+
+- name: Install Apache (httpd) package
+  yum:
+    name: httpd
+    state: present
+
+- name: Start and enable the Apache service
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Ensure Apache is running
+  command: systemctl status httpd
+  register: apache_status
+  changed_when: false
+
+- name: Show Apache status
+  debug:
+    msg: "Apache service is running: {{ apache_status.stdout }}"
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: files/index.html
+    dest: /var/www/html
+    owner: root
+    group: root
+    mode: '0644'
